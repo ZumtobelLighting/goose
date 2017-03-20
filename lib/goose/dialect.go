@@ -2,7 +2,7 @@ package goose
 
 import (
 	"database/sql"
-	"github.com/mattn/go-sqlite3"
+	"gopkg.in/mattn/go-sqlite3.v1"
 )
 
 // SqlDialect abstracts the details of specific SQL dialects
