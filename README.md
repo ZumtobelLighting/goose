@@ -4,7 +4,8 @@ goose is a database migration tool.
 
 You can manage your database's evolution by creating incremental SQL or Go scripts.
 
-[![Build Status](https://drone.io/bitbucket.org/liamstask/goose/status.png)](https://drone.io/bitbucket.org/liamstask/goose/latest)
+NOTE: this Digital Lumens fork has sqlite3 and mysql support removed, to reduce entanglement with runtime dependencies.
+
 
 # Install
 
@@ -202,7 +203,7 @@ goose will expand environment variables in the `open` element. For an example, s
 ## Other Drivers
 goose knows about some common SQL drivers, but it can still be used to run Go-based migrations with any driver supported by `database/sql`. An import path and known dialect are required.
 
-Currently, available dialects are: "postgres", "mysql", or "sqlite3"
+In this fork, only "postgres" dialect is supported.
 
 To run Go-based migrations with another driver, specify its import path and dialect, as shown below.
 
@@ -211,7 +212,7 @@ customdriver:
     driver: custom
     open: custom open string
     import: github.com/custom/driver
-    dialect: mysql
+    dialect: postgres
 ```
 
 NOTE: Because migrations written in SQL are executed directly by the goose binary, only drivers compiled into goose may be used for these migrations.
