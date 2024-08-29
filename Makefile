@@ -6,17 +6,17 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: build
-build: build-linux build-darwin build-windows ## Build binaries for all platforms
+build: build-linux build-linux-arm build-darwin build-windows ## Build binaries for all platforms
 
 .PHONY: build-linux
 build-linux: ## Build binary for Linux
-	GOOS=linux GOARCH=amd64 go build -mod=vendor -o bin/goose-linux ./cmd/goose/...
-	sha256sum bin/goose-linux > bin/goose-linux.sha256
+	GOOS=linux GOARCH=amd64 go build -mod=vendor -o bin/goose-linux-amd64 ./cmd/goose/...
+	sha256sum bin/goose-linux-amd64 > bin/goose-linux-amd64.sha256
 
 .PHONY: build-linux-arm
 build-linux-arm: ## Build binary for Linux on ARM
-	GOOS=linux GOARCH=arm64 go build -mod=vendor -o bin/goose-linux-arm ./cmd/goose/...
-	sha256sum bin/goose-linux-arm > bin/goose-linux-arm.sha256
+	GOOS=linux GOARCH=arm64 go build -mod=vendor -o bin/goose-linux-arm64 ./cmd/goose/...
+	sha256sum bin/goose-linux-arm64 > bin/goose-linux-arm64.sha256
 
 .PHONY: build-darwin
 build-darwin: ## Build binary for macOS
